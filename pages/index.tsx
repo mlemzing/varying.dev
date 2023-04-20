@@ -11,9 +11,11 @@ const xanhMono = Xanh_Mono({
 export default function Home() {
   const headerText = "ng - Software - Graphics - Design - Yi";
 
-  const aboutRef = useRef();
+  const aboutRef = useRef<HTMLDivElement>(null);
   const scrollToAbout = () => {
-    aboutRef.current.scrollIntoView({ behavior: "smooth" });
+    if (aboutRef && aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
   return (
     <motion.div
@@ -47,7 +49,8 @@ export default function Home() {
         </button>
       </div>
       <div className="h-screen" ref={aboutRef}>
-        Hi
+        <h1 className="text-xl">{`Hello, I'm Ying`}</h1>
+        <p>{`I'm a software developer living in Singapore.`}</p>
       </div>
     </motion.div>
   );
