@@ -6,7 +6,7 @@ export default function About() {
       animate={{ opacity: 1, scale: 1 }}
     >
       <div className="flex flex-col p-24 items-center justify-center">
-        <div>Hi I'm Ying</div>
+        <div>{`Hi I'm Ying`}</div>
       </div>
     </motion.div>
   );
