@@ -25,3 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.grit {
+  -webkit-mask-image: url("/images/old-moon.png");
+  mask-image: url("/images/old-moon.png");
+}
