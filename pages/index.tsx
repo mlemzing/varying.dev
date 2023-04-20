@@ -8,29 +8,31 @@ const xanhMono = Xanh_Mono({
 export default function Home() {
   const headerText = " me for the ride Join";
   return (
-    <main className={`${xanhMono.variable} font-mono`}>
+    <main className={`${xanhMono.variable}`}>
       <div className="flex flex-col items-center justify-between bg-rose-brown-400 bg-paper-texture">
-        <div className="h-screen flex p-32">
-          <div className="h-64 w-64 absolute text-rose-brown-800 font-xanh">
-            {headerText
-              .toUpperCase()
-              .split("")
-              .map((char, index) => (
-                <div
-                  key={index}
-                  style={{
-                    position: `absolute`,
-                    fontSize: `3rem`,
-                    fontWeight: `700`,
-                    transformOrigin: `0 16rem`,
-                    transform: `rotate(${
-                      (360 / headerText.length) * index
-                    }deg)`,
-                  }}
-                >
-                  {char}
-                </div>
-              ))}
+        <div className="h-screen p-24">
+          <div className="h-full flex flex-col items-center text-rose-brown-800">
+            <div className="font-mono h-2/5 md:h-2/3">
+              {headerText
+                .toUpperCase()
+                .split("")
+                .map((char, index) => (
+                  <div
+                    key={index}
+                    className="absolute text-3xl origin-[0%_400%] md:text-5xl md:origin-[0%_500%]"
+                    style={{
+                      transform: `rotate(${
+                        (360 / headerText.length) * index
+                      }deg)`,
+                    }}
+                  >
+                    {char}
+                  </div>
+                ))}
+            </div>
+            <div className="mt-24 my-auto border border-rose-brown-800 rounded-full px-4 py-2">
+              DIVE IN
+            </div>
           </div>
         </div>
         <div className="h-screen">

@@ -8,9 +8,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        // mono: ["var(--font-xanh", ...fontFamily.mono],
-      },
       backgroundImage: {
         "paper-texture":
           "url('https://www.transparenttextures.com/patterns/little-pluses.png')",
