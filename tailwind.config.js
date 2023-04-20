@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        "spin-slow": "spin 45s linear infinite",
+      },
       backgroundImage: {
         "paper-texture":
           "url('https://www.transparenttextures.com/patterns/little-pluses.png')",
