@@ -25,21 +25,27 @@ export default function Home() {
       className="flex flex-col items-center justify-between"
     >
       <div className="h-screen flex flex-col items-center text-rose-brown-800 p-24">
-        <div className="font-mono h-2/3 font-semi animate-spin-slow">
-          {headerText
-            .toUpperCase()
-            .split("")
-            .map((char, index) => (
-              <div
-                key={index}
-                className="absolute text-3xl origin-[0%_400%] md:text-5xl md:origin-[0%_500%]"
-                style={{
-                  transform: `rotate(${(360 / headerText.length) * index}deg)`,
-                }}
-              >
-                {char}
-              </div>
-            ))}
+        <div className="font-mono h-2/3 font-semi flex">
+          <div className="flex items-center justify-center animate-spin-slow">
+            {/* <div> */}
+            {headerText
+              .toUpperCase()
+              .split("")
+              .map((char, index) => (
+                <div
+                  key={index}
+                  // className="absolute text-3xl origin-[0%_400%] md:text-5xl md:origin-[0%_500%]"
+                  className="text-3xl md:text-5xl absolute"
+                  style={{
+                    transform: `rotate(${
+                      (360 / headerText.length) * index
+                    }deg)`,
+                  }}
+                >
+                  <div className="mb-[16rem] md:mb-[24rem]">{char}</div>
+                </div>
+              ))}
+          </div>
         </div>
         <button
           onClick={scrollToAbout}

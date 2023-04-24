@@ -29,3 +29,74 @@ body {
   -webkit-mask-image: url("/images/old-moon.png");
   mask-image: url("/images/old-moon.png");
 }
+
+.spin {
+  animation: spin 1s linear infinite;
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+}
+
+.mountain0 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax0.png");
+  background-position: center;
+}
+.mountain1 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax1.png");
+  background-position: center;
+}
+.mountain2 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax2.png");
+  background-position: center;
+}
+.mountain3 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax3.png");
+  background-position: center;
+}
+.mountain4 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax4.png");
+  background-position: center;
+}
+.mountain5 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax5.png");
+  background-position: center;
+}
+.mountain6 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax6.png");
+  background-position: center;
+}
+.mountain7 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax7.png");
+  background-position: center;
+}
+.mountain8 {
+  background-image: url("/images/firewatch assets/firewatch/1x/parallax8.png");
+  background-position: center;
+}
+.anna {
+  background-image: url("/images/firewatch assets/anna.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.blake {
+  background-image: url("/images/firewatch assets/blake.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.tim {
+  background-image: url("/images/firewatch assets/tim.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.textblock {
+  background-color: #210002;
+}
