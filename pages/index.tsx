@@ -24,10 +24,9 @@ export default function Home() {
       exit={{ opacity: 0.2, scale: 5 }}
       className="flex flex-col items-center justify-between"
     >
-      <div className="h-screen flex flex-col items-center text-rose-brown-800 p-24">
-        <div className="font-mono h-2/3 font-semi flex">
-          <div className="flex items-center justify-center animate-spin-slow">
-            {/* <div> */}
+      <div className="h-screen w-screen flex flex-col items-center text-rose-brown-800">
+        <div className="font-mono h-2/3 font-semi flex overflow-hidden w-full">
+          <div className="flex items-center justify-center animate-spin-slow w-full">
             {headerText
               .toUpperCase()
               .split("")
@@ -35,7 +34,7 @@ export default function Home() {
                 <div
                   key={index}
                   // className="absolute text-3xl origin-[0%_400%] md:text-5xl md:origin-[0%_500%]"
-                  className="text-3xl md:text-5xl absolute"
+                  className="text-4xl md:text-6xl absolute"
                   style={{
                     transform: `rotate(${
                       (360 / headerText.length) * index
@@ -54,7 +53,7 @@ export default function Home() {
           {"LET'S GO ↓"}
         </button>
       </div>
-      <div className="h-screen" ref={aboutRef}>
+      <div className="h-screen py-24" ref={aboutRef}>
         <h1 className="text-xl">{`Hello, I'm Ying`}</h1>
         <p>{`I'm a software developer from Singapore.`}</p>
       </div>
