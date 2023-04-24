@@ -10,26 +10,23 @@ export default function Navbar(navbarProps: NavbarProps) {
       <div className="flex flex-col space-y-2">
         <button
           onClick={navbarProps.onClick}
-          className="flex flex-col space-y-1.5 self-end"
+          className="flex flex-col space-y-1.5 self-end w-6 hover:w-8"
         >
-          <span className="bg-rose-brown-800 h-0.5 w-6 rounded-xs"></span>
-          <span className="bg-rose-brown-800 h-0.5 w-6 rounded-xs"></span>
-          <span className="bg-rose-brown-800 h-0.5 w-6 rounded-xs"></span>
+          <span className="bg-rose-brown-800 h-0.5 rounded-xs w-full"></span>
+          <span className="bg-rose-brown-800 h-0.5 rounded-xs w-full"></span>
+          <span className="bg-rose-brown-800 h-0.5 rounded-xs w-full"></span>
         </button>
         {navbarProps.visible && (
           <div className="flex flex-col text-right font-serif space-y-1 text-lg">
-            <div>
+            <button className="hover:font-semibold text-right">
               <Link href={"/"}>HOME</Link>
-            </div>
-            <div>
+            </button>
+            <button className="hover:font-semibold text-right">
               <Link href={"/portfolio"}>PORTFOLIO</Link>
-            </div>
-            <div>
+            </button>
+            <button className="hover:font-semibold text-right">
               <Link href={"/blog"}>BLOG</Link>
-            </div>
-            <div>
-              <Link href={"/contact"}>CONTACT</Link>
-            </div>
+            </button>
           </div>
         )}
       </div>
