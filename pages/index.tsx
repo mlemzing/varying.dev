@@ -26,7 +26,7 @@ export default function Home() {
     >
       <div className="h-screen flex flex-col items-center text-rose-brown-800 p-24">
         <div className="font-mono h-2/3 font-semi flex">
-          <div className="flex items-center justify-center animate-spin-slow">
+          <div className="flex items-center justify-center spin">
             {/* <div> */}
             {headerText
               .toUpperCase()
@@ -56,7 +56,7 @@ export default function Home() {
       </div>
       <div className="h-screen" ref={aboutRef}>
         <h1 className="text-xl">{`Hello, I'm Ying`}</h1>
-        <p>{`I'm a software developer living in Singapore.`}</p>
+        <p>{`I'm a software developer from Singapore.`}</p>
       </div>
     </motion.div>
   );
