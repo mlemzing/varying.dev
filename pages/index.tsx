@@ -26,7 +26,7 @@ export default function Home() {
     >
       <div className="h-screen flex flex-col items-center text-rose-brown-800 p-24">
         <div className="font-mono h-2/3 font-semi flex">
-          <div className="flex items-center justify-center animate-spin-slow">
+          <div className="flex items-center justify-center animate-spin">
             {/* <div> */}
             {headerText
               .toUpperCase()

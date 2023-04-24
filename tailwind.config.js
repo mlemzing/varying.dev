@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mono: ["var(--font-xanh)"],
+      },
       spacing: {
         128: "32rem",
         256: "64rem",
