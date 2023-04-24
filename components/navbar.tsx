@@ -19,6 +19,9 @@ export default function Navbar(navbarProps: NavbarProps) {
         {navbarProps.visible && (
           <div className="flex flex-col text-right font-serif space-y-1 text-lg">
             <div>
+              <Link href={"/"}>HOME</Link>
+            </div>
+            <div>
               <Link href={"/portfolio"}>PORTFOLIO</Link>
             </div>
             <div>
