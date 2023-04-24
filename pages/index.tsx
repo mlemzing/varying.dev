@@ -53,7 +53,7 @@ export default function Home() {
           {"LET'S GO ↓"}
         </button>
       </div>
-      <div className="h-screen py-24" ref={aboutRef}>
+      <div className="h-screen py-24 px-4 font-serif" ref={aboutRef}>
         <h1 className="text-xl">{`Hello, I'm Ying`}</h1>
         <p>{`I'm a software developer from Singapore.`}</p>
       </div>
