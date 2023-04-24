@@ -30,7 +30,7 @@ body {
   mask-image: url("/images/old-moon.png");
 }
 
-.spin {
+/* .spin {
   animation: spin 1s linear infinite;
 
   @keyframes spin {
@@ -41,7 +41,7 @@ body {
       transform: rotate(360deg);
     }
   }
-}
+} */
 
 .mountain0 {
   background-image: url("/images/firewatch assets/firewatch/1x/parallax0.png");
