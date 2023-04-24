@@ -6,7 +6,7 @@ type NavbarProps = {
 };
 export default function Navbar(navbarProps: NavbarProps) {
   return (
-    <div className="fixed flex w-screen justify-end p-4">
+    <div className="fixed flex w-screen justify-end p-4 z-10">
       <div className="flex flex-col space-y-2">
         <button
           onClick={navbarProps.onClick}
