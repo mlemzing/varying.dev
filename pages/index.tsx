@@ -55,7 +55,7 @@ export default function Home() {
       </div>
       <div className="h-screen py-24 px-4 font-serif" ref={aboutRef}>
         <h1 className="text-xl">{`Hello, I'm Ying`}</h1>
-        <p>{`I'm a software developer from Singapore.`}</p>
+        <p>{`I'm a software developer from Singapore. Test`}</p>
       </div>
     </motion.div>
   );
