@@ -1,7 +1,8 @@
 import { Xanh_Mono } from "next/font/google";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import { Canvas } from "@react-three/fiber";
+import Hero from "@/components/hero";
 
 const xanhMono = Xanh_Mono({
   subsets: ["latin"],
@@ -25,7 +26,7 @@ export default function Home() {
       className="flex flex-col items-center justify-between"
     >
       <div className="h-screen w-screen flex flex-col items-center text-rose-brown-800">
-        <div className="font-mono h-2/3 font-semi flex overflow-hidden w-full">
+        <div className="font-mono h-2/3 font-semi flex overflow-hidden w-full justify-center items-center">
           <div className="flex items-center justify-center animate-spin-slow w-full">
             {headerText
               .toUpperCase()
@@ -54,8 +55,13 @@ export default function Home() {
         </button>
       </div>
       <div className="h-screen py-24 px-4 font-serif" ref={aboutRef}>
+        {/* <div className="absolute z-10 h-full">
+          <Canvas>
+            <Hero />
+          </Canvas>
+        </div> */}
         <h1 className="text-xl">{`Hello, I'm Ying`}</h1>
-        <p>{`I'm a software developer from Singapore. Test`}</p>
+        <p>{`I'm a software developer from Singapore.`}</p>
       </div>
     </motion.div>
   );
