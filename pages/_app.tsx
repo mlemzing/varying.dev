@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
 import { AnimatePresence } from "framer-motion";
 import type { AppProps } from "next/app";
-import { Xanh_Mono, Playfair_Display } from "next/font/google";
+import { Xanh_Mono, Playfair_Display, Public_Sans } from "next/font/google";
 import { useEffect, useState } from "react";
 
 const xanhMono = Xanh_Mono({
@@ -17,6 +17,10 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
+const publicSans = Public_Sans({
+  subsets: ["latin"],
+  variable: "--font-public-sans",
+});
 export default function App({ Component, pageProps }: AppProps) {
   const [navbarShow, setNavbarShow] = useState<boolean>(false);
   useEffect(() => {
@@ -24,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [navbarShow]);
   return (
     <main
-      className={`${xanhMono.variable} bg-rose-brown-400 bg-paper-texture min-h-screen text-rose-brown-800`}
+      className={`${xanhMono.variable} ${playfair.variable} ${publicSans.variable} bg-rose-brown-400 bg-paper-texture min-h-screen text-rose-brown-800 font-sans`}
     >
       {/* <main className=" textblock min-h-screen text-rose-brown-800"> */}
       <Navbar visible={navbarShow} onClick={() => setNavbarShow(!navbarShow)} />

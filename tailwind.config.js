@@ -12,7 +12,9 @@ module.exports = {
         "spin-slow": "spin 45s linear infinite",
       },
       fontFamily: {
-        mono: ["var(--font-xanh)"],
+        sans: ["var(--font-public-sans)", ...fontFamily.sans],
+        serif: ["var(--font-playfair)", ...fontFamily.serif],
+        mono: ["var(--font-xanh)", ...fontFamily.mono],
       },
       spacing: {
         128: "32rem",

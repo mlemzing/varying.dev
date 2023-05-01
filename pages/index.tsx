@@ -1,14 +1,6 @@
-import { Xanh_Mono } from "next/font/google";
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { Canvas } from "@react-three/fiber";
-import Hero from "@/components/hero";
 
-const xanhMono = Xanh_Mono({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-xanh",
-});
 export default function Home() {
   const headerText = "ng - Software - Graphics - Design - Yi";
 
@@ -49,12 +41,12 @@ export default function Home() {
         </div>
         <button
           onClick={scrollToAbout}
-          className="mt-24 my-auto border border-rose-brown-800 rounded-full px-4 py-2 text-xl"
+          className="mt-24 my-auto border border-rose-brown-800 rounded-full px-4 py-2 font-sans text-xl"
         >
           {"LET'S GO ↓"}
         </button>
       </div>
-      <div className="h-screen py-24 px-4 font-serif" ref={aboutRef}>
+      <div className="h-screen py-24 px-4" ref={aboutRef}>
         {/* <div className="absolute z-10 h-full">
           <Canvas>
             <Hero />
