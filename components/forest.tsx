@@ -1,28 +1,80 @@
 import { OrbitControls, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useState } from "react";
-export default function Forest() {
+import { useRef, useState } from "react";
+
+type ForestProps = {
+  setShowBottom: (value: boolean) => void;
+};
+export default function Forest({ setShowBottom }: ForestProps) {
   const [pastForest, setPastForest] = useState(false);
+  const [pastClouds, setPastClouds] = useState(false);
   const finalX = 18;
-  const [forest1, forest2, forest3, forest4, cloud1, cloud2, cloud3] =
-    useTexture([
-      "./forest/forest1.png",
-      "./forest/forest2.png",
-      "./forest/forest3.png",
-      "./forest/forest4.png",
-      "./forest/cloud1.png",
-      "./forest/cloud2.png",
-      "./forest/cloud3.png",
-    ]);
+  const [
+    forest1,
+    forest2,
+    forest3,
+    forest4,
+    cloud1,
+    cloud2,
+    cloud3,
+    human1,
+    human2,
+    human3,
+  ] = useTexture([
+    "./forest/forest1.png",
+    "./forest/forest2.png",
+    "./forest/forest3.png",
+    "./forest/forest4.png",
+    "./forest/cloud1.png",
+    "./forest/cloud2.png",
+    "./forest/cloud3.png",
+    "./forest/human1.png",
+    "./forest/human2.png",
+    "./forest/human3.png",
+  ]);
+
+  const humanRef = useRef();
+  const humanMeshRef = useRef();
+  const [humanIndex, setHumanIndex] = useState(1);
   useFrame((state, delta) => {
+    if (humanRef) {
+      switch (humanIndex) {
+        case 1: {
+          humanRef.current.map = human1;
+          setHumanIndex(2);
+          break;
+        }
+        case 2: {
+          humanRef.current.map = human2;
+          setHumanIndex(3);
+          break;
+        }
+        case 3: {
+          humanRef.current.map = human3;
+          setHumanIndex(4);
+          break;
+        }
+        case 4: {
+          humanRef.current.map = human2;
+          setHumanIndex(1);
+          break;
+        }
+      }
+    }
     state.camera.position.y +=
       (state.mouse.y * 0.5 - state.camera.position.y) * delta;
     if (state.camera.position.x < finalX && !pastForest) {
       state.camera.position.x += delta;
+      if (humanMeshRef) {
+        humanMeshRef.current.position.x += delta * 0.5;
+      }
     } else {
       setPastForest(true);
       if (state.camera.position.z > -3) {
         state.camera.position.z -= delta * 2;
+      } else {
+        setPastClouds(true);
+        setShowBottom(true);
       }
       if (pastForest) {
         state.camera.position.x +=
@@ -33,6 +85,10 @@ export default function Forest() {
   return (
     <>
       {/* <OrbitControls /> */}
+      <mesh scale={[20, 10, 10]} position={[0, 0, -0.5]} ref={humanMeshRef}>
+        <planeGeometry args={[1, 1, 20, 20]} />
+        <meshBasicMaterial map={human1} transparent ref={humanRef} />
+      </mesh>
       <mesh scale={[20, 10, 10]} position={[0, 0, 0]}>
         <planeGeometry args={[1, 1, 20, 20]} />
         <meshBasicMaterial map={forest1} transparent />
