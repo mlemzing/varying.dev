@@ -1,6 +1,7 @@
 import { OrbitControls, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
+import { Mesh, MeshBasicMaterial } from "three";
 
 type ForestProps = {
   setShowBottom: (value: boolean) => void;
@@ -33,8 +34,8 @@ export default function Forest({ setShowBottom }: ForestProps) {
     "./forest/human3.png",
   ]);
 
-  const humanRef = useRef();
-  const humanMeshRef = useRef();
+  const humanRef = useRef<MeshBasicMaterial>(null!);
+  const humanMeshRef = useRef<Mesh>(null!);
   const [humanIndex, setHumanIndex] = useState(1);
   useFrame((state, delta) => {
     if (humanRef) {
