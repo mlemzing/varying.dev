@@ -17,7 +17,14 @@ export const hobbyList: Project[] = [
     link: "https://fox-camera-test.vercel.app/",
     image: "/images/fox-camera-test.png",
     description:
-      "Small test on fox models to look at camera with Orbit Controls",
+      "Small test on fox models to look at camera with Orbit Controls.",
+  },
+  {
+    title: "Parallax Scene with Moving Camera in 3D (WIP)",
+    link: "/parallax3d",
+    image: "/images/parallax3d.png",
+    description:
+      "Experimental playground to test parallax components in 3D instead of react-spring library.",
   },
 ];
 
