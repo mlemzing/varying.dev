@@ -1,3 +1,5 @@
+import Hero from "@/components/hero";
+import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
@@ -17,6 +19,11 @@ export default function Home() {
       exit={{ opacity: 0.2, scale: 5 }}
       className="flex flex-col items-center justify-between"
     >
+      <div className="absolute h-screen w-screen butterfly-canvas">
+        <Canvas>
+          <Hero />
+        </Canvas>
+      </div>
       <div className="h-screen w-screen flex flex-col items-center text-rose-brown-800">
         <div className="font-mono h-2/3 font-semi flex overflow-hidden w-full justify-center items-center">
           <div className="flex items-center justify-center animate-spin-slow w-full">
@@ -47,13 +54,17 @@ export default function Home() {
         </button>
       </div>
       <div className="h-screen py-24 px-4" ref={aboutRef}>
-        {/* <div className="absolute z-10 h-full">
-          <Canvas>
-            <Hero />
-          </Canvas>
-        </div> */}
         <h1 className="text-xl">{`Hello, I'm Ying`}</h1>
         <p>{`I'm a software developer from Singapore.`}</p>
+        <p>{`My experience lies in the React Framework and I enjoy creating scenes and animating with ThreeJS.`}</p>
+        <ul>
+          <li>
+            <a href="">Twitter</a>
+          </li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
     </motion.div>
   );

@@ -5,7 +5,7 @@ export default function Hero() {
   const colorMap = useLoader(TextureLoader, "./textures/mangamatcap.jpeg");
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <ambientLight />
       <directionalLight intensity={3} />
       <mesh>

@@ -7,6 +7,12 @@ export type Project = {
 
 export const hobbyList: Project[] = [
   {
+    title: "Circular spinning text",
+    link: "https://codepen.io/mlemzing/pen/YzJxOQJ",
+    image: "/images/circular-text.png",
+    description: "Short demo of circular spinning text as seen on my homepage.",
+  },
+  {
     title: "Fox Camera Test",
     link: "https://fox-camera-test.vercel.app/",
     image: "/images/fox-camera-test.png",
@@ -22,27 +28,20 @@ export const professionalList: Project[] = [
     image:
       "https://supportgowhere.life.gov.sg/static/media/logo_with_name.fa38afce.svg",
     description:
-      "Test random testTest random testTest random testTest random testTest random testTest random testTest random testTest random test",
+      "SupportGoWhere is a one stop portal for individuals and families in Singapore to find support schemes and services with ease.",
   },
   {
-    title: "SupportGoWhere",
-    link: "https://supportgowhere.life.gov.sg/",
-    image:
-      "https://supportgowhere.life.gov.sg/static/media/logo_with_name.fa38afce.svg",
-    description: "Test",
+    title: "NFTNYC Pizza Campaign",
+    link: "https://mintable.app/nftnyc/pizza",
+    image: "/images/mintable-pizza.png",
+    description:
+      "As part of NFT.NYC, Mintable is giving away free NFTs, sponsored by Mastercard, that can be used to redeem slices of cheese pizza in New York City.",
   },
   {
-    title: "SupportGoWhere",
-    link: "https://supportgowhere.life.gov.sg/",
-    image:
-      "https://supportgowhere.life.gov.sg/static/media/logo_with_name.fa38afce.svg",
-    description: "Test",
-  },
-  {
-    title: "SupportGoWhere",
-    link: "https://supportgowhere.life.gov.sg/",
-    image:
-      "https://supportgowhere.life.gov.sg/static/media/logo_with_name.fa38afce.svg",
-    description: "Test",
+    title: "Mintology",
+    link: "https://accounts.mintology.app/",
+    image: "/images/mintology-logo.svg",
+    description:
+      "Mintology allows brands to launch NFT campaigns that are suitable for any target audience, regardless of their familiarity with cryptocurrency. ",
   },
 ];

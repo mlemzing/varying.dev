@@ -12,6 +12,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       href={project.link}
     >
       <Image
+        unoptimized
         src={project.image}
         alt={project.title}
         width="0"

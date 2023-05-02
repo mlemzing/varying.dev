@@ -43,6 +43,9 @@ body {
   }
 } */
 
+.butterfly-canvas {
+  margin-top: 100vh;
+}
 .mountain0 {
   background-image: url("/images/firewatch assets/firewatch/1x/parallax0.png");
   background-position: center;
