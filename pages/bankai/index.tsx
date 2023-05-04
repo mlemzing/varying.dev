@@ -7,7 +7,7 @@ export default function Bankai() {
   return (
     <div className="h-screen w-screen bg-black">
       <Canvas>
-        <OrbitControls />
+        {/* <OrbitControls /> */}
         {/* <points>
           <bufferGeometry attach="geometry">
             <bufferAttribute
