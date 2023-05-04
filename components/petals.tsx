@@ -11,16 +11,16 @@ export default function Petals() {
     setTime(state.clock.elapsedTime);
     setMouse([state.mouse.x, state.mouse.y]);
   });
-  const count = 1000;
+  const count = 500;
   let positions = useMemo(() => {
     let positions: number[] = [];
     let aRotate: number[] = [];
     let aSpeed: number[] = [];
     for (let i = 0; i < count; i++) {
       positions.push(
-        (Math.random() - 0.5) * 5,
-        (Math.random() - 0.5) * 5,
-        (Math.random() - 0.5) * 5
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 10
       );
       aRotate.push(Math.random() + 0.5);
       aSpeed.push((Math.random() + 0.5) * 5);

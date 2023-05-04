@@ -20,6 +20,13 @@ export const hobbyList: Project[] = [
       "Small test on fox models to look at camera with Orbit Controls.",
   },
   {
+    title: "Spinning sakura petals",
+    link: "/bankai",
+    image: "/images/sakura.png",
+    description:
+      "Practice on writing my own shaders using GLSL and animating them.",
+  },
+  {
     title: "Parallax Scene with Moving Camera in 3D (WIP)",
     link: "/parallax3d",
     image: "/images/parallax3d.png",
