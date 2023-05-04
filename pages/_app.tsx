@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { AnimatePresence } from "framer-motion";
 import type { AppProps } from "next/app";
 import { Xanh_Mono, Playfair_Display, Public_Sans } from "next/font/google";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 
 const xanhMono = Xanh_Mono({
@@ -30,6 +31,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <main
       className={`${xanhMono.variable} ${playfair.variable} ${publicSans.variable} bg-rose-brown-400 bg-paper-texture min-h-screen text-rose-brown-800 font-sans`}
     >
+      <Head>
+        <title>{`Ying's Portfolio`}</title>
+      </Head>
       {/* <main className=" textblock min-h-screen text-rose-brown-800"> */}
       <Navbar visible={navbarShow} onClick={() => setNavbarShow(!navbarShow)} />
       <AnimatePresence>
