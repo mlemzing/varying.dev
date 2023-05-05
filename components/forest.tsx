@@ -80,6 +80,9 @@ export default function Forest({ setShowBottom }: ForestProps) {
     // state.camera.position.x +=
     //   (state.mouse.x * 0.5 - state.camera.position.x) * delta;
     state.camera.position.z = -(inClouds * 15) + 5;
+    if (inClouds >= 1) {
+      setShowBottom(true);
+    }
     // if (state.camera.position.x < finalX && !pastForest) {
     //   state.camera.position.x = inForest * finalX;
     //   if (humanMeshRef) {
