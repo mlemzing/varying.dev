@@ -1,4 +1,9 @@
-import { OrbitControls, useTexture } from "@react-three/drei";
+import {
+  OrbitControls,
+  ScrollControls,
+  useScroll,
+  useTexture,
+} from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { Mesh, MeshBasicMaterial } from "three";
@@ -7,6 +12,7 @@ type ForestProps = {
   setShowBottom: (value: boolean) => void;
 };
 export default function Forest({ setShowBottom }: ForestProps) {
+  const scroll = useScroll();
   const [pastForest, setPastForest] = useState(false);
   const [pastClouds, setPastClouds] = useState(false);
   const finalX = 18;
@@ -38,6 +44,7 @@ export default function Forest({ setShowBottom }: ForestProps) {
   const humanMeshRef = useRef<Mesh>(null!);
   const [humanIndex, setHumanIndex] = useState(1);
   useFrame((state, delta) => {
+    console.log(scroll);
     if (humanRef) {
       switch (humanIndex) {
         case 1: {
@@ -62,26 +69,33 @@ export default function Forest({ setShowBottom }: ForestProps) {
         }
       }
     }
+    const inForest = scroll.range(0, 1 / 2);
+    const inClouds = scroll.range(1 / 2, 1);
     state.camera.position.y +=
       (state.mouse.y * 0.5 - state.camera.position.y) * delta;
-    if (state.camera.position.x < finalX && !pastForest) {
-      state.camera.position.x += delta;
-      if (humanMeshRef) {
-        humanMeshRef.current.position.x += delta * 0.5;
-      }
-    } else {
-      setPastForest(true);
-      if (state.camera.position.z > -3) {
-        state.camera.position.z -= delta * 2;
-      } else {
-        setPastClouds(true);
-        setShowBottom(true);
-      }
-      if (pastForest) {
-        state.camera.position.x +=
-          (finalX - (state.camera.position.x + state.mouse.x * 0.75)) * delta;
-      }
+    state.camera.position.x = inForest * finalX;
+    if (humanMeshRef) {
+      humanMeshRef.current.position.x = inForest * 10;
     }
+    // state.camera.position.x +=
+    //   (state.mouse.x * 0.5 - state.camera.position.x) * delta;
+    state.camera.position.z = -(inClouds * 15) + 5;
+    // if (state.camera.position.x < finalX && !pastForest) {
+    //   state.camera.position.x = inForest * finalX;
+    //   if (humanMeshRef) {
+    //     humanMeshRef.current.position.x = inForest * 10;
+    //   }
+    // } else {
+    //   if (state.camera.position.z > -3) {
+    //     state.camera.position.z = -inClouds + 5;
+    //   } else {
+    //     setShowBottom(true);
+    //   }
+    //   if (pastForest) {
+    //     state.camera.position.x +=
+    //       (finalX - (state.camera.position.x + state.mouse.x * 0.75)) * delta;
+    //   }
+    // }
   });
   return (
     <>

@@ -1,35 +1,63 @@
 import { shaderMaterial } from "@react-three/drei";
 import { Object3DNode, extend } from "@react-three/fiber";
-import { Color, ShaderMaterial } from "three";
+import { Color, ShaderMaterial, Vector3 } from "three";
 
 export const PetalMaterial = shaderMaterial(
-  { uTime: 0, uMouseX: 0, uMouseY: 0, color: new Color(0.2, 0.0, 0.1) },
+  {
+    uTime: 0,
+    uMouseX: 0,
+    uMouseY: 0,
+    uRayX: 0,
+    uRayY: 0,
+    uRayZ: -1,
+    color: new Color(0.2, 0.0, 0.1),
+  },
   // vertex shader
   /*glsl*/ `
     varying vec2 vUv;
     uniform float uTime;
     uniform float uMouseX;
     uniform float uMouseY;
+    uniform float uRayX;
+    uniform float uRayY;
+    uniform float uRayZ;
 
     attribute float aRotate;
     attribute float aSpeed;
 
     varying float vRotate;
     varying float vSpeed;
+
+    vec3 findTargetPoint(vec3 origin, vec3 direction, float z) {
+      float t = z / direction.z;
+      vec3 intersectionPoint = origin + t * direction;
+      return intersectionPoint;
+    }
     void main() {
-      vUv = uv;
-      // float newX = sin(position.x * uTime) * sin(position.y * uTime);
-      // vec3 newPosition = vec3(newX, position.yz);
-      // gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
-      // vec2 newXY = length(position.xy) - 0.5;
-      vec3 newPosition = vec3(position.x + uMouseX, position.y + uMouseY, position.z);
+      // vec3 newPosition = vec3(position.x + uMouseX, position.y + uMouseY, position.z);
+      // vec3 newPosition = vec3(position.x + uRayX, position.y + uRayY, position.z);
+      vec3 newPosition = position;
+      vec3 targetPosition = findTargetPoint(vec3(0.0, 0.0, 5.0), vec3(uRayX, uRayY, uRayZ), position.z);
+      float angle = atan(targetPosition.z, targetPosition.x);
+      targetPosition = vec3(targetPosition.x + aRotate, targetPosition.y + aRotate, position.z);
+      // targetPosition.x = cos(angle + (uTime * aSpeed));
+      // targetPosition.y = cos(angle + (uTime));
+
+      if (uTime > 5.0) {
+        newPosition = targetPosition;
+      } else {
+        newPosition = mix(newPosition, targetPosition, (uTime + aRotate) / (5.0 + aRotate));
+      }
+      // vec3 newPosition = position;
+      // newPosition += uRayDirection;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
 
       vec4 viewPosition = viewMatrix * modelMatrix * vec4(position, 1.0);
-      gl_PointSize = 150.0;
+      gl_PointSize = 250.0;
       gl_PointSize *= (1.0 / -viewPosition.z);
       vRotate = aRotate;
       vSpeed = aSpeed;
+      vUv = uv;
     }
   `,
   // fragment shader
@@ -47,6 +75,7 @@ export const PetalMaterial = shaderMaterial(
                                 : length(p-vec2(-d,0.0))-r;
     }
     void main() {
+      // gl_FragColor = vec4(1.0);
       vec2 newUv = gl_PointCoord - 0.5;
 
       newUv *= mat2(cos(uTime * vSpeed), sin(uTime * vSpeed), -sin(uTime * vSpeed), cos(uTime * vSpeed));
