@@ -5,7 +5,7 @@ import {
   useTexture,
 } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Mesh, MeshBasicMaterial } from "three";
 
 type ForestProps = {
@@ -43,32 +43,27 @@ export default function Forest({ setShowBottom }: ForestProps) {
   const humanRef = useRef<MeshBasicMaterial>(null!);
   const humanMeshRef = useRef<Mesh>(null!);
   const [humanIndex, setHumanIndex] = useState(1);
+  const textureAnimator = useCallback(() => {}, []);
   useFrame((state, delta) => {
-    console.log(scroll);
-    if (humanRef) {
-      switch (humanIndex) {
-        case 1: {
-          humanRef.current.map = human1;
-          setHumanIndex(2);
-          break;
-        }
-        case 2: {
-          humanRef.current.map = human2;
-          setHumanIndex(3);
-          break;
-        }
-        case 3: {
-          humanRef.current.map = human3;
-          setHumanIndex(4);
-          break;
-        }
-        case 4: {
-          humanRef.current.map = human2;
-          setHumanIndex(1);
-          break;
-        }
+    let scrollOffset = Math.ceil(scroll.offset / 0.0004);
+    console.log(scrollOffset % 40);
+    if (scrollOffset) {
+      // Dampen animation after stopping scroll
+      if (scrollOffset % 80 < 20) {
+        console.log("human 1");
+        humanRef.current.map = human1;
+      } else if (scrollOffset % 80 < 40) {
+        console.log("human 2");
+        humanRef.current.map = human2;
+      } else if (scrollOffset % 80 < 60) {
+        console.log("human 3");
+        humanRef.current.map = human3;
+      } else {
+        console.log("human 4");
+        humanRef.current.map = human2;
       }
     }
+
     const inForest = scroll.range(0, 1 / 2);
     const inClouds = scroll.range(1 / 2, 1);
     state.camera.position.y +=
@@ -78,9 +73,11 @@ export default function Forest({ setShowBottom }: ForestProps) {
       humanMeshRef.current.position.x = inForest * 10;
     }
     // state.camera.position.x +=
-    //   (state.mouse.x * 0.5 - state.camera.position.x) * delta;
+    //   (state.mouse.x * 5 - state.camera.position.x) * delta;
     state.camera.position.z = -(inClouds * 15) + 5;
-    if (inClouds >= 1) {
+    // console.log(inClouds);
+    if (inClouds >= 0.5) {
+      console.log("end clouds");
       setShowBottom(true);
     }
     // if (state.camera.position.x < finalX && !pastForest) {
@@ -100,6 +97,7 @@ export default function Forest({ setShowBottom }: ForestProps) {
     //   }
     // }
   });
+
   return (
     <>
       {/* <OrbitControls /> */}
