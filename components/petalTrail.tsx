@@ -1,4 +1,5 @@
 import { PetalMaterial } from "@/materials/petals";
+import { OrbitControls } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BufferAttribute, DoubleSide, NormalBlending, Vector3 } from "three";
@@ -16,16 +17,19 @@ export default function PetalTrail() {
     aSpeed: Float32Array;
     aDeviateX: Float32Array;
     aDeviateY: Float32Array;
+    aDeviateZ: Float32Array;
   } = useMemo(() => {
     let aRotate: number[] = [];
     let aSpeed: number[] = [];
     let aDeviateX: number[] = [];
     let aDeviateY: number[] = [];
+    let aDeviateZ: number[] = [];
     for (let i = 0; i < count; i++) {
       aRotate.push(Math.random() - 0.5);
       aSpeed.push(Math.random() * 5);
       aDeviateX.push((Math.random() - 0.5) * 1);
       aDeviateY.push((Math.random() - 0.5) * 1);
+      aDeviateZ.push((Math.random() - 0.5) * 1);
     }
 
     return {
@@ -33,6 +37,7 @@ export default function PetalTrail() {
       aSpeed: new Float32Array(aSpeed),
       aDeviateX: new Float32Array(aDeviateX),
       aDeviateY: new Float32Array(aDeviateY),
+      aDeviateZ: new Float32Array(aDeviateZ),
     };
   }, [count]);
 
@@ -58,7 +63,7 @@ export default function PetalTrail() {
             positions[previous3 + 1],
             positions[i3 + 2]
           );
-          const lerpPoint = currentPoint.lerp(previousPoint, 1);
+          const lerpPoint = currentPoint.lerp(previousPoint, 0.9);
           console.log(lerpPoint);
           newPositions[i3] = lerpPoint.x;
           newPositions[i3 + 1] = lerpPoint.y;
@@ -99,6 +104,7 @@ export default function PetalTrail() {
   });
   return (
     <>
+      <OrbitControls />
       <points>
         <bufferGeometry>
           <bufferAttribute
@@ -130,6 +136,12 @@ export default function PetalTrail() {
             attach="attributes-aDeviateY"
             array={attributes.aDeviateY}
             count={attributes.aDeviateY.length}
+            itemSize={1}
+          />
+          <bufferAttribute
+            attach="attributes-aDeviateZ"
+            array={attributes.aDeviateZ}
+            count={attributes.aDeviateZ.length}
             itemSize={1}
           />
         </bufferGeometry>

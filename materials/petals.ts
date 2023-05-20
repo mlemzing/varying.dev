@@ -26,6 +26,7 @@ export const PetalMaterial = shaderMaterial(
     attribute float aSpeed;
     attribute float aDeviateX;
     attribute float aDeviateY;
+    attribute float aDeviateZ;
 
     varying float vRotate;
     varying float vSpeed;
@@ -39,6 +40,7 @@ export const PetalMaterial = shaderMaterial(
       vec3 newPosition = position;
       newPosition.x += aDeviateX;
       newPosition.y += aDeviateY;
+      newPosition.z += aDeviateZ;
 
       gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
 
