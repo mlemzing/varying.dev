@@ -24,6 +24,8 @@ export const PetalMaterial = shaderMaterial(
 
     attribute float aRotate;
     attribute float aSpeed;
+    attribute float aDeviateX;
+    attribute float aDeviateY;
 
     varying float vRotate;
     varying float vSpeed;
@@ -34,30 +36,10 @@ export const PetalMaterial = shaderMaterial(
       return intersectionPoint;
     }
     void main() {
-      // vec3 newPosition = vec3(position.x + uMouseX, position.y + uMouseY, position.z);
-      // vec3 newPosition = vec3(position.x + uRayX, position.y + uRayY, position.z);
       vec3 newPosition = position;
-      // newPosition.x = cos((uTime) * aSpeed);
-      // newPosition.y = sin((uTime) * aSpeed);
-      // vec3 targetPosition = findTargetPoint(vec3(0.0, 0.0, 5.0), vec3(uRayX, uRayY, uRayZ), position.z);
-      // targetPosition.x += aRotate;
-      // targetPosition.y += aRotate;
-      // newPosition = targetPosition;
-      // newPosition.x += cos((uTime) * aSpeed);
-      // newPosition.y += sin((uTime) * aSpeed);
-      // float angle = atan(targetPosition.z, targetPosition.x);
-      // targetPosition = vec3(targetPosition.x + aRotate, targetPosition.y + aRotate, position.z);
-      // // targetPosition.x = cos(angle + (uTime * aSpeed));
-      // // targetPosition.y = cos(angle + (uTime));
-      newPosition.x = mix(newPosition.x, uRayX, 0.9);
+      newPosition.x += aDeviateX;
+      newPosition.y += aDeviateY;
 
-      // if (uTime > 5.0) {
-      //   newPosition = targetPosition;
-      // } else {
-      //   newPosition = mix(newPosition, targetPosition, (uTime + aRotate) / (5.0 + aRotate));
-      // }
-      // vec3 newPosition = position;
-      // newPosition += uRayDirection;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
 
       vec4 viewPosition = viewMatrix * modelMatrix * vec4(position, 1.0);
