@@ -25,11 +25,12 @@ export default function PetalTrail() {
     let aDeviateY: number[] = [];
     let aDeviateZ: number[] = [];
     for (let i = 0; i < count; i++) {
+      let angle = (Math.random() - 0.5) * 2;
       aRotate.push(Math.random() - 0.5);
       aSpeed.push(Math.random() * 5);
-      aDeviateX.push((Math.random() - 0.5) * 1);
-      aDeviateY.push((Math.random() - 0.5) * 1);
-      aDeviateZ.push((Math.random() - 0.5) * 1);
+      aDeviateX.push(Math.cos(angle) * ((Math.random() - 0.5) * 2));
+      aDeviateY.push(Math.sin(angle) * ((Math.random() - 0.5) * 2));
+      aDeviateZ.push((Math.random() - 0.5) * 2);
     }
 
     return {
@@ -42,7 +43,6 @@ export default function PetalTrail() {
   }, [count]);
 
   useEffect(() => {
-    console.log(mouseRay);
     let newPositions = [];
     if (positions) {
       for (let i = 0; i < count; i++) {
@@ -63,7 +63,7 @@ export default function PetalTrail() {
             positions[previous3 + 1],
             positions[i3 + 2]
           );
-          const lerpPoint = currentPoint.lerp(previousPoint, 0.9);
+          const lerpPoint = currentPoint.lerp(previousPoint, 0.8);
           console.log(lerpPoint);
           newPositions[i3] = lerpPoint.x;
           newPositions[i3 + 1] = lerpPoint.y;
