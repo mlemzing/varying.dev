@@ -70,11 +70,11 @@ export default function Clouds({ setShowBottom }: CloudProps) {
     const inClouds = scroll.range(0, 1);
     state.camera.position.y = -inClouds * 4.5;
     light2Ref.current.position.y =
-      state.camera.position.y + 2.45 + inClouds * 0.5;
+      state.camera.position.y + 2.45 + inClouds * 0.75;
     light3Ref.current.position.y =
-      state.camera.position.y + 2.45 + inClouds * 0.5;
+      state.camera.position.y + 2.45 + inClouds * 0.75;
     light4Ref.current.position.y =
-      state.camera.position.y + 2.45 + inClouds * 0.5;
+      state.camera.position.y + 2.45 + inClouds * 0.75;
     light2Ref.current.rotation.z = inClouds * 0.3;
     light3Ref.current.rotation.z = inClouds * 0.3;
     light4Ref.current.rotation.z = inClouds * 0.3;
@@ -153,15 +153,7 @@ export default function Clouds({ setShowBottom }: CloudProps) {
         <planeGeometry args={[1, 1, 20, 20]} />
         <meshBasicMaterial map={light2} transparent />
       </mesh>
-      <mesh scale={[120, 120, 1]} position={[15, 14, -24.45]}>
-        <planeGeometry args={[1, 1, 20, 20]} />
-        <meshBasicMaterial map={light1} transparent />
-      </mesh>
-      <mesh scale={[120, 120, 1]} position={[15, 14, -24.45]}>
-        <planeGeometry args={[1, 1, 20, 20]} />
-        <meshBasicMaterial map={light1} transparent />
-      </mesh>
-      <mesh scale={[120, 120, 1]} position={[15, 14, -24.45]}>
+      <mesh scale={[150, 150, 1]} position={[15, 14, -24.45]}>
         <planeGeometry args={[1, 1, 20, 20]} />
         <meshBasicMaterial map={light1} transparent />
       </mesh>
