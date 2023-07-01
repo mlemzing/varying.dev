@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import Forest from "../../components/forest";
 import { useState } from "react";
 import { ScrollControls } from "@react-three/drei";
+import Clouds from "@/components/clouds";
 export default function Parallax3D() {
   const [showBottom, setShowBottom] = useState(false);
   const handleShowBottom = (value: boolean) => {
@@ -11,8 +12,8 @@ export default function Parallax3D() {
     <div className="bg-black">
       <div className="w-screen h-screen bg-black">
         <Canvas>
-          <ScrollControls pages={2}>
-            <Forest setShowBottom={handleShowBottom} />
+          <ScrollControls pages={1}>
+            <Clouds setShowBottom={handleShowBottom} />
           </ScrollControls>
         </Canvas>
       </div>

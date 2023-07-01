@@ -2,11 +2,18 @@ import { PetalMaterial } from "@/materials/petals";
 import { OrbitControls } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { BufferAttribute, DoubleSide, NormalBlending, Vector3 } from "three";
+import {
+  BufferAttribute,
+  DoubleSide,
+  Group,
+  NormalBlending,
+  Vector3,
+} from "three";
 
 extend(PetalMaterial);
 export default function PetalTrail() {
   let count = 200;
+  const groupRef = useRef<Group>(null!);
   const [mouseRay, setMouseRay] = useState<Vector3>(new Vector3(0.5, 0.5, 0.5));
   const [positions, setPositions] = useState<Float32Array>(
     new Float32Array(new Array(count * 3).fill(0.1))
@@ -45,6 +52,13 @@ export default function PetalTrail() {
   useEffect(() => {
     let newPositions = [];
     if (positions) {
+      if (groupRef) {
+        groupRef.current.position.set(
+          mouseRay.x,
+          mouseRay.y,
+          groupRef.current.position.z
+        );
+      }
       for (let i = 0; i < count; i++) {
         const i3 = i * 3;
         const previous3 = (i - 1) * 3;
@@ -63,8 +77,7 @@ export default function PetalTrail() {
             positions[previous3 + 1],
             positions[i3 + 2]
           );
-          const lerpPoint = currentPoint.lerp(previousPoint, 0.8);
-          console.log(lerpPoint);
+          const lerpPoint = currentPoint.lerp(previousPoint, 0.1);
           newPositions[i3] = lerpPoint.x;
           newPositions[i3 + 1] = lerpPoint.y;
           newPositions[i3 + 2] = lerpPoint.z;
@@ -101,59 +114,67 @@ export default function PetalTrail() {
 
     setMouseRay(mouse);
     setTime(state.clock.elapsedTime);
+    if (groupRef) {
+      // groupRef.current.
+      groupRef.current.rotateY(time / 100);
+      // groupRef.current.rotateZ(time / 100);
+      console.log(groupRef.current.position);
+    }
   });
   return (
     <>
       <OrbitControls />
-      <points>
-        <bufferGeometry>
-          <bufferAttribute
-            ref={pointsRef}
-            attach="attributes-position"
-            array={positions}
-            count={count}
-            itemSize={3}
+      <group ref={groupRef}>
+        <points>
+          <bufferGeometry>
+            <bufferAttribute
+              ref={pointsRef}
+              attach="attributes-position"
+              array={positions}
+              count={count}
+              itemSize={3}
+            />
+            <bufferAttribute
+              attach="attributes-aRotate"
+              array={attributes.aRotate}
+              count={attributes.aRotate.length}
+              itemSize={1}
+            />
+            <bufferAttribute
+              attach="attributes-aSpeed"
+              array={attributes.aSpeed}
+              count={attributes.aSpeed.length}
+              itemSize={1}
+            />
+            <bufferAttribute
+              attach="attributes-aDeviateX"
+              array={attributes.aDeviateX}
+              count={attributes.aDeviateX.length}
+              itemSize={1}
+            />
+            <bufferAttribute
+              attach="attributes-aDeviateY"
+              array={attributes.aDeviateY}
+              count={attributes.aDeviateY.length}
+              itemSize={1}
+            />
+            <bufferAttribute
+              attach="attributes-aDeviateZ"
+              array={attributes.aDeviateZ}
+              count={attributes.aDeviateZ.length}
+              itemSize={1}
+            />
+          </bufferGeometry>
+          <petalMaterial
+            side={DoubleSide}
+            uTime={time}
+            blending={NormalBlending}
+            transparent
+            depthWrite={false}
           />
-          <bufferAttribute
-            attach="attributes-aRotate"
-            array={attributes.aRotate}
-            count={attributes.aRotate.length}
-            itemSize={1}
-          />
-          <bufferAttribute
-            attach="attributes-aSpeed"
-            array={attributes.aSpeed}
-            count={attributes.aSpeed.length}
-            itemSize={1}
-          />
-          <bufferAttribute
-            attach="attributes-aDeviateX"
-            array={attributes.aDeviateX}
-            count={attributes.aDeviateX.length}
-            itemSize={1}
-          />
-          <bufferAttribute
-            attach="attributes-aDeviateY"
-            array={attributes.aDeviateY}
-            count={attributes.aDeviateY.length}
-            itemSize={1}
-          />
-          <bufferAttribute
-            attach="attributes-aDeviateZ"
-            array={attributes.aDeviateZ}
-            count={attributes.aDeviateZ.length}
-            itemSize={1}
-          />
-        </bufferGeometry>
-        <petalMaterial
-          side={DoubleSide}
-          uTime={time}
-          blending={NormalBlending}
-          transparent
-          depthWrite={false}
-        />
-        {/* <pointsMaterial color="red" size={0.2} sizeAttenuation={true} /> */}
-      </points>
+          {/* <pointsMaterial color="red" size={0.2} sizeAttenuation={true} /> */}
+        </points>
+      </group>
     </>
   );
 }

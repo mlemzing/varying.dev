@@ -1,3 +1,4 @@
+import Byakuya from "@/components/byakuya";
 import Petal from "@/components/petal";
 import Petals from "@/components/petals";
 import { OrbitControls } from "@react-three/drei";
@@ -24,6 +25,7 @@ export default function Bankai() {
           <shaderMaterial />
         </mesh> */}
         {/* <Petal /> */}
+        <Byakuya />
         <Petals />
       </Canvas>
     </div>
