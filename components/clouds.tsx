@@ -113,7 +113,7 @@ export default function Clouds({ setShowBottom }: CloudProps) {
         <planeGeometry args={[1, 1, 20, 20]} />
         <meshBasicMaterial map={layer4} transparent />
       </mesh>
-      <mesh scale={[30, 10, 15]} position={[0, -0.25, -1]} ref={layer5Ref}>
+      <mesh scale={[35, 12, 15]} position={[0, -1.35, -2]} ref={layer5Ref}>
         <planeGeometry args={[1, 1, 20, 20]} />
         <meshBasicMaterial map={layer5} transparent />
       </mesh>
